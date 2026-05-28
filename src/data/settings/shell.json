@@ -1,0 +1,41 @@
+{
+  "brandTitle": "Duda",
+  "quote": "Um lugar para\nguardar palavras\ne pequenas histórias\ndo cotidiano.",
+  "nav": [
+    {
+      "id": "essay",
+      "label": "Textos",
+      "ornament": "·",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "bits",
+      "label": "Bits",
+      "ornament": "·",
+      "visible": false,
+      "order": 2
+    },
+    {
+      "id": "memo",
+      "label": "Memórias",
+      "ornament": "·",
+      "visible": false,
+      "order": 3
+    },
+    {
+      "id": "archive",
+      "label": "Arquivo",
+      "ornament": "·",
+      "visible": false,
+      "order": 4
+    },
+    {
+      "id": "about",
+      "label": "Sobre",
+      "ornament": "·",
+      "visible": true,
+      "order": 5
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Duda",
+  "description": "Um espaço para palavras, memórias e pequenas histórias.",
+  "defaultLocale": "pt-BR",
+  "footer": {
+    "startYear": 2026,
+    "showCurrentYear": false,
+    "copyright": "Eduarda Moreira Kalkmann"
+  },
+  "adminOverview": {
+    "publicVisible": false,
+    "hiddenMessage": "Página não disponível."
+  },
+  "socialLinks": {
+    "github": "",
+    "x": "",
+    "email": "",
+    "presetOrder": {
+      "github": 1,
+      "x": 2,
+      "email": 3
+    },
+    "custom": []
+  }
+}

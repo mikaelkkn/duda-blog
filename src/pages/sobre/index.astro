@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BrandIcon from '../../components/BrandIcon.astro';
+import '../../styles/about.css';
+import { getThemeSettings, type SiteSocialIconKey } from '../../lib/theme-settings';
+const { settings } = getThemeSettings();
+const resolvedSocialItems = settings.site.socialLinks.resolvedSocialItems.filter((item) => item.visible);
+const aboutTitle = settings.page.about.title || 'Sobre';
+const aboutSubtitle = settings.page.about.subtitle;
+
+type SocialActionItem = {
+  key: string;
+  href: string;
+  label: string;
+  title: string;
+  icon: SiteSocialIconKey;
+};
+
+type ContactItem = {
+  key: string;
+  href: string;
+  icon: SiteSocialIconKey;
+  text: string;
+};
+
+const formatExternalLabel = (href: string): string => {
+  try {
+    const parsed = new URL(href);
+    const path = parsed.pathname.replace(/^\/+|\/+$/g, '');
+    return path || parsed.hostname;
+  } catch {
+    return href;
+  }
+};
+
+const socialItems: SocialActionItem[] = [
+  ...resolvedSocialItems.map((item) => ({
+    key: item.id,
+    href: item.href,
+    label: item.label,
+    title: item.label,
+    icon: item.iconKey
+  }))
+];
+
+const contactItems: ContactItem[] = [
+  ...resolvedSocialItems.map((item) => ({
+    key: item.id,
+    href: item.href,
+    icon: item.iconKey,
+    text: item.id === 'email' ? item.href.replace(/^mailto:/i, '') : formatExternalLabel(item.href)
+  }))
+];
+---
+
+<BaseLayout title={aboutTitle} bodyClass="about-page">
+  <div class="page-header page-header--about">
+    <div class="page-heading">
+      <h1 class="page-title">{aboutTitle}</h1>
+      {aboutSubtitle ? <span class="page-subtitle">{aboutSubtitle}</span> : null}
+    </div>
+    {
+      socialItems.length ? (
+        <div class="page-actions">
+          {socialItems.map((item) => (
+            <a class="icon-link" href={item.href} aria-label={item.title} title={item.title}>
+              <BrandIcon name={item.icon} class="icon" />
+            </a>
+          ))}
+        </div>
+      ) : null
+    }
+  </div>
+  <p class=”about-intro-line”>
+    Um espaço pessoal para guardar palavras, reflexões e pequenas histórias do cotidiano.
+  </p>
+  <h2 class=”section-title about-section-title”>O que tem aqui</h2>
+  <div class=”site-guide”>
+    <article class=”site-guide-item”>
+      <div class=”site-guide-head”>
+        <h3 class=”site-guide-title”>Textos</h3>
+        <span class=”site-guide-link”>/textos/</span>
+      </div>
+      <p class=”site-guide-desc”>Posts e reflexões.</p>
+    </article>
+  </div>
+
+  {
+    contactItems.length ? (
+      <>
+        <h2 class="section-title about-section-title">Contato</h2>
+        <section class="contact-block" aria-label="Formas de contato">
+          <p class="contact-note">Se quiser entrar em contato.</p>
+          <ul class="contact-list">
+            {contactItems.map((item) => (
+              <li>
+                <span class="contact-link-head" aria-hidden="true">
+                  <BrandIcon name={item.icon} class="contact-icon" />
+                </span>
+                <a href={item.href}>{item.text}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </>
+    ) : null
+  }
+
+</BaseLayout>

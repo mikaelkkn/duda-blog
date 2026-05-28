@@ -1,0 +1,23 @@
+{
+  "codeBlock": {
+    "showLineNumbers": true
+  },
+  "readingMode": {
+    "showEntry": false
+  },
+  "sidebarActions": {
+    "showRssLink": true,
+    "showThemeToggle": true,
+    "showAdminEntry": false
+  },
+  "articleMeta": {
+    "showDate": true,
+    "dateLabel": "Publicado em: ",
+    "showTags": true,
+    "showWordCount": true,
+    "showReadingTime": true
+  },
+  "layout": {
+    "sidebarDivider": "default"
+  }
+}
